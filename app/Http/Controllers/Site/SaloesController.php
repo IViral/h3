@@ -12,11 +12,11 @@ class SaloesController extends Controller
     {
         $salao = DB::table('Salaos')->where('status', 0)->get();
 
-        return view('site.saloes', compact('salao'));
+        return view('site.saloes', compact('salao'), ['title' => 'Salões - H3%']);
     }
 
     public function salao($id)
     {
-        return 'teste';
+        return view('site.salao', compact(''));
     }
 }

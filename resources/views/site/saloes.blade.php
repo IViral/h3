@@ -38,7 +38,7 @@
 							      <td>{{$saloes->endereco}}</td>
 							      <td>{{$saloes->like}}</td>
 							      <td>{{$saloes->dislike}}</td>
-							      <td><a href="">Mais Informações</a></td>
+							      <td><a href="{{url('salao')}}/{{$saloes->id}}">Mais Informações</a></td>
 						    </tr>
             @empty
              fail
