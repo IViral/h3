@@ -87,17 +87,17 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Home</a>
-                    <a href="https://laravel.com/docs">Pesquisar Salão</a>
+                    <a href="{{url('')}}">Home</a>
+                    <a href="{{url('saloes')}}">Pesquisar Salão</a>
                     <a href="https://laravel-news.com">Cadastre Seu Salão</a>
                     <a href="https://github.com/laravel/laravel">Informações Sobre o Projeto</a>
-                    <a href="https://forge.laravel.com">Contato</a>
                 </div>
             </div>
         </div>
         <div class="contenty">
             @yield('content')
         </div>
+        <script src="{{url('js')}}/bootstrap.js"></script>
         <script>
         @yield('jsbt')
         </script>

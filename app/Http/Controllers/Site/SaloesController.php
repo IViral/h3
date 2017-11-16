@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Cortes;
 
 class SaloesController extends Controller
 {
@@ -17,6 +18,9 @@ class SaloesController extends Controller
 
     public function salao($id)
     {
-        return view('site.salao', compact(''));
+        $salao = DB::table('Salaos')->where('id', "{$id}")->first();
+        $cortes = DB::table('Cortes')->where('salao_id', "{$id}")->get();
+
+        return view('site.salao', compact('salao', 'cortes'));
     }
 }

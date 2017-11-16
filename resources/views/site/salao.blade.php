@@ -1,5 +1,67 @@
 @extends('welcome')
 
 @section('content')
+	<div class="col-md-12">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Setor</th>
+      <th scope="col">Endereço</th>
+      <th scope="col">Like</th>
+      <th scope="col">Dislike</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{$salao->nome}}</th>
+      <td>{{$salao->setor}}</td>
+      <td>{{$salao->endereco}}</td>
+      <td>{{$salao->like}}</td>
+      <td>{{$salao->dislike}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="campo-foto" style="margin-bottom: 100px;">
+<div class="row">
+@forelse($cortes as $corte)
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="{{$corte->img}}" alt="Card image cap">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{$corte->nome}}</li>
+    <li class="list-group-item">{{$corte->preco}}</li>
+  </ul>
+</div>
+@empty
+fail
+@endforelse
+</div>
+</div>
+
+@endsection
+
+@section('csstop')
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+@endsection
+
+@section('cssc')
+
+.contenty{
+    margin: 0 auto;
+    max-width: 1000px;
+}
+.card{
+    float: left;
+    margin-left: 3px;
+    margin-top: 10px;
+}
+
+.card-img-top{
+    width: 318px;
+    height: 220px;
+}
 
 @endsection
