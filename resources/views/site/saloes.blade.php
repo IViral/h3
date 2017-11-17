@@ -13,6 +13,7 @@
 							<th>Nome</th>
 							<th>Setor</th>
 							<th>Endereço</th>
+							<th>Telefone</th>
 							<th>Like</th>
 							<th>Dislike</th>
 							<th>Mais Informações</th>
@@ -24,6 +25,7 @@
 							<th>Nome</th>
 							<th>Setor</th>
 							<th>Endereço</th>
+							<th>Telefone</th>
 							<th>Like</th>
 							<th>Dislike</th>
 							<th>Mais Informações</th>
@@ -36,6 +38,7 @@
 							      <td>{{$saloes->nome}}</td>
 							      <td>{{$saloes->setor}}</td>
 							      <td>{{$saloes->endereco}}</td>
+							      <td>{{$saloes->numero}}</td>
 							      <td>{{$saloes->like}}</td>
 							      <td>{{$saloes->dislike}}</td>
 							      <td><a href="{{url('salao')}}/{{$saloes->id}}">Mais Informações</a></td>

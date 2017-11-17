@@ -8,6 +8,7 @@
       <th scope="col">Nome</th>
       <th scope="col">Setor</th>
       <th scope="col">Endereço</th>
+      <th scope="col">Telefone</th>
       <th scope="col">Like</th>
       <th scope="col">Dislike</th>
     </tr>
@@ -17,6 +18,7 @@
       <th scope="row">{{$salao->nome}}</th>
       <td>{{$salao->setor}}</td>
       <td>{{$salao->endereco}}</td>
+      <td>{{$salao->numero}}</td>
       <td>{{$salao->like}}</td>
       <td>{{$salao->dislike}}</td>
     </tr>
@@ -34,7 +36,7 @@
   </ul>
 </div>
 @empty
-fail
+Nem 1 Corte Disponível
 @endforelse
 </div>
 </div>

@@ -19,8 +19,12 @@ class SaloesController extends Controller
     public function salao($id)
     {
         $salao = DB::table('Salaos')->where('id', "{$id}")->first();
-        $cortes = DB::table('Cortes')->where('salao_id', "{$id}")->get();
-
-        return view('site.salao', compact('salao', 'cortes'));
+        if($salao){
+            $cortes = DB::table('Cortes')->where('salao_id', "{$id}")->get();
+            return view('site.salao', compact('salao', 'cortes'), ['title' => "{$salao->nome} - H3%"]);
+        }
+        else{
+            return view('404');
+        }
     }
 }
