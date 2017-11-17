@@ -3,6 +3,7 @@ Route::get('/', 'Site\HomeSiteController@index');
 Route::get('/saloes', 'Site\SaloesController@index');
 Route::get('salao/{id}', 'Site\SaloesController@salao');
 Route::resource('admin/salao', 'Auth\AddSalaoController');
+Route::resource('admin/cortes', 'Auth\AddCorteController');
 
 // Authentication Routes...
 Auth::routes();

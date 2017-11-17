@@ -3,20 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use App\Salaos;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FormSalaoRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Session;
+use App\Cortes;
 
-
-class AddSalaoController extends Controller
+class AddCorteController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +17,7 @@ class AddSalaoController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
-        $salao = DB::table('salaos')->where('user_id', "{$user_id}")->get();
-        return view('admin.indexsalao', compact('salao'));
+        //
     }
 
     /**
@@ -36,7 +27,9 @@ class AddSalaoController extends Controller
      */
     public function create()
     {
-        return view('admin.addsalao');
+        $user_id = Auth::id();
+        $saloes = DB::table('salaos')->where('user_id', "{$user_id}")->get();
+        return view('admin.addcorte', compact('saloes'));
     }
 
     /**
@@ -45,17 +38,32 @@ class AddSalaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FormSalaoRequest $request)
+    public function store(Request $request)
     {
-        $salao = DB::table('salaos')->where('nome', $request->input('nome'))->get()->first();
-        if(!$salao){
-            $data = $request->except(['_token']);
+        $data = $request->except(['img', '_token']);
+        if (!$anime) {
+            $data = $request->except(['img', '_token']);
+            // Pedindo o campo img
+            $file = $request->img;
+            // Destino da imagem
+            $destinatioPath = public_path('img');
+            // Nome e a extensão da imagem
+            $img = $filename = time()." - {$request->name}.{$file->getClientOriginalExtension()}";
+            // Movendo a imagem para o destino e renomeando
+            $file->move($destinatioPath, $filename);
             $user_id = Auth::id();
-            $add = Salaos::create($data + compact('user_id'));
-            Session::flash('success', 'Salão adicionado com sucesso');
-            return redirect('/admin/salao');
-        }else{
-            return redirect('/admin/salao/create');
+            // Adicionando
+            $add = Cortes::create($data + compact('img', 'user_id'));
+            // Msg de sucesso
+            Session::flash('success', 'Anime adicionado com sucesso');
+            // Mandando para created de volta
+            return redirect('/admin/animes/create');
+            // Se não encontro
+        } else {
+            // Msg de error
+            Session::flash('error', 'Error ao adicionar Anime: Já existe anime com esse nome no banco de dados');
+            // Mandando para created de volta
+            return redirect('/painel/animes/create');
         }
     }
 
