@@ -25,8 +25,8 @@ class AddSalaoController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $salao = DB::table('salaos')->where('user_id', "{$user_id}")->get();
-        return view('admin.indexsalao', compact('salao'));
+        $salao = DB::table('salaos')->where('user_id', "{$user_id}")->paginate(20);
+        return view('admin.indexsalao', compact('salao', 'user_id'));
     }
 
     /**
@@ -67,7 +67,9 @@ class AddSalaoController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_id = Auth::id();
+        $salao = DB::table('salaos')->where('id', $id)->where('user_id', $user_id)->first();
+        return view('Admin.ShowSalao', compact('salao'));
     }
 
     /**
@@ -78,7 +80,9 @@ class AddSalaoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user_id = Auth::id();
+        $salao = DB::table('salaos')->where('id', $id)->where('user_id', $user_id)->first();
+        return view('admin.addsalao', compact('salao'));
     }
 
     /**
@@ -90,7 +94,10 @@ class AddSalaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->except(['_token', '_method']);
+        $user_id = Auth::id();
+        $add = DB::table('salaos')->where('id', $id)->where('user_id', $user_id)->update($data + compact('user_id'));
+        return redirect('/admin/salao');
     }
 
     /**
@@ -101,6 +108,8 @@ class AddSalaoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user_id = Auth::id();
+        DB::table('salaos')->where('id', $id)->where('user_id', $user_id)->delete();
+        return redirect('/admin/salao');
     }
 }
