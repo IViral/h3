@@ -29,7 +29,7 @@
 <div class="row">
 @forelse($cortes as $corte)
 <div class="card" style="width: 20rem;">
-  <img class="card-img-top" src="{{$corte->img}}" alt="Card image cap">
+  <img class="card-img-top" src="{{url('img')}}/{{$corte->img}}" alt="Card image cap">
   <ul class="list-group list-group-flush">
     <li class="list-group-item">{{$corte->nome}}</li>
     <li class="list-group-item">{{$corte->preco}}</li>

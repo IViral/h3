@@ -35,4 +35,5 @@
     </tr>
   </tbody>
 </table>
+<a href="{{url('admin/salao')}}" type="button" class="btn btn-primary">Voltar</a>
 @endsection

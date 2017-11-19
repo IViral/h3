@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="{{route('cortes.store')}}" method="post" files="true" enctype="multipart/form-data">
+@if(isset($corte))
+    <form action="{{route('corte.update', $corte->id)}}" class="form" method="post" files="true" enctype="multipart/form-data">
+    {!! method_field('PUT') !!}
+@else
+    <form action="{{route('corte.store')}}" method="post" files="true" enctype="multipart/form-data">
+@endif
   <div class="form-group row">
     <label for="inputEmail3" class="col-sm-2 col-form-label">Nome do Salão</label>
     <div class="col-sm-5">
@@ -20,13 +25,13 @@
   <div class="form-group row">
     <label for="inputEmail3" class="col-sm-2 col-form-label">Nome do Corte</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control"  name="nome" placeholder="Nome">
+      <input type="text" class="form-control"  value="{{$corte->nome or old('nome')}}" name="nome" placeholder="Nome">
     </div>
   </div>
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">Preço</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control"  name="preco" placeholder="Preço">
+      <input type="text" class="form-control"  value="{{$corte->preco or old('preco')}}" name="preco" placeholder="Preço">
     </div>
   </div>
 

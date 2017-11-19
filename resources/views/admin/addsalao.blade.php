@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@if(Session::has('success'))
-<div class="alert alert-success" role="alert">{{ Session::get('success') }}</div>
-@endif @if(Session::has('error'))
-<div class="alert alert-danger" role="alert">{{ Session::get('error') }}</div>
-@endif
 @if(isset($salao))
     <form action="{{route('salao.update', $salao->id)}}" class="form" method="post" files="true" enctype="multipart/form-data">
     {!! method_field('PUT') !!}
@@ -40,6 +35,11 @@
   <div class="form-group row">
     <div class="col-sm-5">
       <button type="submit" class="btn btn-primary">Cadastrar</button>
+      @if(isset($salao))
+      <a href="{{url('admin/salao')}}/{{$salao->id}}" type="button" class="btn btn-danger">Voltar</a>
+      @else
+      <a href="{{url('admin/salao')}}" type="button" class="btn btn-danger">Voltar</a>
+      @endif
     </div>
   </div>
 </form>

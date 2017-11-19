@@ -51,6 +51,18 @@
             </li>
             @endcan
 
+            <li class="{{ $request->segment(2) == 'salao' ? 'active' : '' }}">
+                <a href="{{ url('admin/salao') }}">
+                    <i class="fa fa-chevron-right"></i>
+                    <span class="title">Salões</span>
+                </a>
+            </li>
+            <li class="{{ $request->segment(2) == 'corte' ? 'active' : '' }}">
+                <a href="{{ url('admin/corte') }}">
+                    <i class="fa fa-chevron-right"></i>
+                    <span class="title">Cortes</span>
+                </a>
+            </li>
 
             <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
                 <a href="{{ route('auth.change_password') }}">

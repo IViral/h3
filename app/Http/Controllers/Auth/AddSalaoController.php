@@ -25,7 +25,7 @@ class AddSalaoController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $salao = DB::table('salaos')->where('user_id', "{$user_id}")->paginate(20);
+        $salao = DB::table('salaos')->orderBy('id', 'DESC')->where('user_id', "{$user_id}")->paginate(20);
         return view('admin.indexsalao', compact('salao', 'user_id'));
     }
 
@@ -55,6 +55,7 @@ class AddSalaoController extends Controller
             Session::flash('success', 'Salão adicionado com sucesso');
             return redirect('/admin/salao');
         }else{
+            Session::flash('error', 'Error ao adicionar o salão, já existe outro salão cadastrado com esse nome');
             return redirect('/admin/salao/create');
         }
     }
@@ -69,7 +70,10 @@ class AddSalaoController extends Controller
     {
         $user_id = Auth::id();
         $salao = DB::table('salaos')->where('id', $id)->where('user_id', $user_id)->first();
-        return view('Admin.ShowSalao', compact('salao'));
+        if($salao){
+            return view('Admin.ShowSalao', compact('salao'));
+        }
+        return view('404');
     }
 
     /**
@@ -82,7 +86,11 @@ class AddSalaoController extends Controller
     {
         $user_id = Auth::id();
         $salao = DB::table('salaos')->where('id', $id)->where('user_id', $user_id)->first();
-        return view('admin.addsalao', compact('salao'));
+        if($salao){
+            return view('admin.addsalao', compact('salao'));
+        }else{
+            return view('404');
+        }
     }
 
     /**
@@ -92,12 +100,18 @@ class AddSalaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormSalaoRequest $request, $id)
     {
         $data = $request->except(['_token', '_method']);
         $user_id = Auth::id();
         $add = DB::table('salaos')->where('id', $id)->where('user_id', $user_id)->update($data + compact('user_id'));
-        return redirect('/admin/salao');
+        if($add){
+            Session::flash('success', 'Salão atualizado com sucesso');
+            return redirect('/admin/salao');
+        }else{
+            Session::flash('error', 'Você nao tem permissao para fazer mudanças nesse salão');
+            return redirect('/admin/salao');
+        }
     }
 
     /**
@@ -109,7 +123,14 @@ class AddSalaoController extends Controller
     public function destroy($id)
     {
         $user_id = Auth::id();
-        DB::table('salaos')->where('id', $id)->where('user_id', $user_id)->delete();
-        return redirect('/admin/salao');
+        $delete = Salaos::where('id', $id)->where('user_id', $user_id)->first();
+        if($delete){
+            $deletar = $delete->delete();
+            Session::flash('success', 'Salão deletado com sucesso');
+            return redirect('/admin/salao');
+        }else{
+            Session::flash('error', 'Você nao tem permissao para deletar esse salão');
+            return redirect('/admin/salao');
+        }
     }
 }
