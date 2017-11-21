@@ -14,8 +14,6 @@
 							<th>Setor</th>
 							<th>Endereço</th>
 							<th>Telefone</th>
-							<th>Like</th>
-							<th>Dislike</th>
 							<th>Mais Informações</th>
 						</tr>
 					</thead>
@@ -26,8 +24,6 @@
 							<th>Setor</th>
 							<th>Endereço</th>
 							<th>Telefone</th>
-							<th>Like</th>
-							<th>Dislike</th>
 							<th>Mais Informações</th>
 						</tr>
 					</tfoot>
@@ -39,8 +35,6 @@
 							      <td>{{$saloes->setor}}</td>
 							      <td>{{$saloes->endereco}}</td>
 							      <td>{{$saloes->numero}}</td>
-							      <td>{{$saloes->like}}</td>
-							      <td>{{$saloes->dislike}}</td>
 							      <td><a href="{{url('salao')}}/{{$saloes->id}}">Mais Informações</a></td>
 						    </tr>
             @empty

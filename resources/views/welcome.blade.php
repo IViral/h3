@@ -89,7 +89,7 @@
                 <div class="links">
                     <a href="{{url('')}}">Home</a>
                     <a href="{{url('saloes')}}">Pesquisar Salão</a>
-                    <a href="https://laravel-news.com">Cadastre Seu Salão</a>
+                    <a href="{{url('admin/salao')}}">Cadastre Seu Salão</a>
                     <a href="https://github.com/laravel/laravel">Informações Sobre o Projeto</a>
                 </div>
             </div>

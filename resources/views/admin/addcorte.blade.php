@@ -17,7 +17,7 @@
     @empty
     @endforelse
     @else
-      <option>Você nao tem saloes cadastrado</option>
+      <option value="5">Você não tem salões cadastrado</option>
     @endif
     </select>
     </div>
@@ -45,6 +45,11 @@
   <div class="form-group row">
     <div class="col-sm-5">
       <button type="submit" class="btn btn-primary">Cadastrar</button>
+      @if(isset($corte))
+      <a href="{{url('admin/corte')}}/{{$corte->id}}" type="button" class="btn btn-danger">Voltar</a>
+      @else
+      <a href="{{url('admin/corte')}}" type="button" class="btn btn-danger">Voltar</a>
+      @endif
     </div>
   </div>
 </form>

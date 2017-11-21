@@ -9,12 +9,9 @@
                     
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were problems with input:
+                            <strong>Error!</strong> Email ou Senha incorretos
                             <br><br>
                             <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
                             </ul>
                         </div>
                     @endif
@@ -50,17 +47,10 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <a href="{{ route('auth.password.reset') }}">Forgot your password?</a>
+                                <a href="{{ route('auth.password.reset') }}">Recuperar senha</a>
                             </div>
-                        </div>
-
-
-                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <label>
-                                    <input type="checkbox"
-                                           name="remember"> Remember me
-                                </label>
+                                <a href="{{ url('register') }}">Cadastrar</a>
                             </div>
                         </div>
 

@@ -4,12 +4,7 @@
     <h3 class="page-title">Change password</h3>
 
     @if(session('success'))
-        <!-- If password successfully show message -->
-        <div class="row">
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        </div>
+
     @else
         {!! Form::open(['method' => 'PATCH', 'route' => ['auth.change_password']]) !!}
         <!-- If no success message in flash session show change password form  -->

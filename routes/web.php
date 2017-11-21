@@ -2,6 +2,7 @@
 Route::get('/', 'Site\HomeSiteController@index');
 Route::get('/saloes', 'Site\SaloesController@index');
 Route::get('salao/{id}', 'Site\SaloesController@salao');
+Route::resource('admin/analise/salao', 'Auth\AnaliseSalaoController');
 Route::resource('admin/salao', 'Auth\AddSalaoController');
 Route::resource('admin/corte', 'Auth\AddCorteController');
 Route::redirect('/admin', '/login');

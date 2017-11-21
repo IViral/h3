@@ -15,6 +15,10 @@ use File;
 
 class AddCorteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +52,7 @@ class AddCorteController extends Controller
     public function store(AddCorteRequest $request)
     {
         $data = $request->except(['img', '_token']);
+        if(!$request->salao_id == 5){
             $data = $request->except(['img', '_token']);
             // Pedindo o campo img
             $file = $request->img;
@@ -66,6 +71,11 @@ class AddCorteController extends Controller
             Session::flash('success', 'Corte adicionado com sucesso');
             // Mandando para created de volta
             return redirect('/admin/corte');
+        }else{
+            Session::flash('error', 'Error ao adicionar salão, você não tem salões cadastrado nessa conta');
+            // Mandando para created de volta
+            return redirect('/admin/corte/create');
+        }
     }
 
     /**

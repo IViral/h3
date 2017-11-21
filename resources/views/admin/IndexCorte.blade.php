@@ -22,7 +22,7 @@
       <td><a href="{{url('admin/corte')}}/{{$cortes->id}}" type="button" class="btn btn-info">Mais informações</button></a>
     </tr>
     @empty
-    <td>Nem 1 salão cadastrado em sua conta</td>
+    <td>Nem 1 corte cadastrado em sua conta</td>
     @endforelse
   </tbody>
 </table>

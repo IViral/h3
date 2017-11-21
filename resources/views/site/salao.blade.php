@@ -9,8 +9,6 @@
       <th scope="col">Setor</th>
       <th scope="col">Endereço</th>
       <th scope="col">Telefone</th>
-      <th scope="col">Like</th>
-      <th scope="col">Dislike</th>
     </tr>
   </thead>
   <tbody>
@@ -19,8 +17,6 @@
       <td>{{$salao->setor}}</td>
       <td>{{$salao->endereco}}</td>
       <td>{{$salao->numero}}</td>
-      <td>{{$salao->like}}</td>
-      <td>{{$salao->dislike}}</td>
     </tr>
   </tbody>
 </table>

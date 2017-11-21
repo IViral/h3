@@ -51,9 +51,9 @@ class ChangePasswordController extends Controller
         if (Hash::check($request->get('current_password'), $user->password)) {
             $user->password = $request->get('new_password');
             $user->save();
-            return redirect($this->redirectTo)->with('success', 'Password change successfully!');
+            return redirect($this->redirectTo)->with('success', 'Senha atualizada com sucesso');
         } else {
-            return redirect()->back()->withErrors('Current password is incorrect');
+            return redirect()->back()->withErrors('Senha incorreta');
         }
     }
 

@@ -50,13 +50,21 @@
                 </ul>
             </li>
             @endcan
-
+            @can('analista')
+            <li class="{{ $request->segment(3) == 'salao' ? 'active' : '' }}">
+                <a href="{{ url('admin/analise/salao') }}">
+                    <i class="fa fa-chevron-right"></i>
+                    <span class="title">Aprovar Salões</span>
+                </a>
+            </li>
+            @endcan
             <li class="{{ $request->segment(2) == 'salao' ? 'active' : '' }}">
                 <a href="{{ url('admin/salao') }}">
                     <i class="fa fa-chevron-right"></i>
                     <span class="title">Salões</span>
                 </a>
             </li>
+
             <li class="{{ $request->segment(2) == 'corte' ? 'active' : '' }}">
                 <a href="{{ url('admin/corte') }}">
                     <i class="fa fa-chevron-right"></i>
