@@ -41,7 +41,7 @@ Nem 1 Corte Disponível
 
 @section('csstop')
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{url('css/bootstrap4.css')}}">
 
 @endsection
 

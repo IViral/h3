@@ -21,7 +21,8 @@ class AnaliseSalaoController extends Controller
     public function index()
     {
         if (! Gate::allows('analista')) {
-            return view('SemPermicao');
+            Session::flash('error', 'Você não tem permissão para acessa essa pagina');
+            return redirect('/admin/home');
         }
         $salao = DB::table('salaos')->orderBy('id', 'DESC')->where('status', 2)->paginate(40);
         return view('admin.AnaliseSalao', compact('salao'));
@@ -35,7 +36,8 @@ class AnaliseSalaoController extends Controller
     public function create()
     {
         if (! Gate::allows('analista')) {
-            return view('SemPermicao');
+            Session::flash('error', 'Você não tem permissão para acessa essa pagina');
+            return redirect('/admin/home');
         }
     }
 
@@ -48,7 +50,8 @@ class AnaliseSalaoController extends Controller
     public function store(Request $request)
     {
         if (! Gate::allows('analista')) {
-            return view('SemPermicao');
+            Session::flash('error', 'Você não tem permissão para acessa essa pagina');
+            return redirect('/admin/home');
         }
     }
 
@@ -61,7 +64,8 @@ class AnaliseSalaoController extends Controller
     public function show($id)
     {
         if (! Gate::allows('analista')) {
-            return view('SemPermicao');
+            Session::flash('error', 'Você não tem permissão para acessa essa pagina');
+            return redirect('/admin/home');
         }
     }
 
@@ -74,7 +78,8 @@ class AnaliseSalaoController extends Controller
     public function edit($id)
     {
         if (! Gate::allows('analista')) {
-            return view('SemPermicao');
+            Session::flash('error', 'Você não tem permissão para acessa essa pagina');
+            return redirect('/admin/home');
         }
         $salao = DB::table('salaos')->where('id', $id)->where('status', 2)->first();
         if($salao){
@@ -94,7 +99,8 @@ class AnaliseSalaoController extends Controller
     public function update(Request $request, $id)
     {
         if (! Gate::allows('analista')) {
-            return view('SemPermicao');
+            Session::flash('error', 'Você não tem permissão para acessa essa pagina');
+            return redirect('/admin/home');
         }
         $data = $request->except(['_token', '_method']);
         if($request->status == 0){
@@ -115,7 +121,8 @@ class AnaliseSalaoController extends Controller
     public function destroy($id)
     {
         if (! Gate::allows('analista')) {
-            return view('SemPermicao');
+            Session::flash('error', 'Você não tem permissão para acessa essa pagina');
+            return redirect('/admin/home');
         }
     }
 }
